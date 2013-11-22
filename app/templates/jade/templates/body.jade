@@ -1,0 +1,29 @@
+#exemplo
+    h1 Yo Vale is awesome
+    p.
+        Now, you can make 
+        amazing things!!
+
+script(src='#{path}js/helpers.js').
+script(src='#{path}js/lib/require.js').
+script.
+    window.pathFinal = "#{path}";
+
+if useJquery
+    script.
+        window.jQuery || document.write('<script src="#{path}js/lib/jquery.js"><\/script>');
+
+script.
+    var devDebug = #{debug};
+    requirejs.config({
+        waitSeconds: 30,
+        config:{
+            i18n: {
+                locale: window.parent.document.documentElement.lang || "pt-br"
+            }
+        },
+        baseUrl: "#{path}js/lib"
+    });
+    require(['../common'], function (common) {
+        require(['app/main']);
+    });
