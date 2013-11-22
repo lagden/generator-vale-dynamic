@@ -1,9 +1,11 @@
 {
     "name": "generator-vale-dynamic",
-    "version": "0.0.0",
-    "description": "A generator for Yeoman",
+    "version": "0.0.1",
+    "description": "A generator for Yeoman - Vale.com",
     "keywords": [
-        "yeoman-generator"
+        "yeoman-generator",
+        "vale",
+        "dynamic"
     ],
     "homepage": "https://github.com/lagden/generator-vale-dynamic",
     "bugs": "https://github.com/lagden/generator-vale-dynamic/issues",
