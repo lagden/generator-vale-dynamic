@@ -2,7 +2,7 @@
 if (!(window.console && console.log)) {
     (function() {
         var noop = function() {};
-        var methods = ["assert", "clear", "count", "debug", "dir", "dirxml", "error", "exception", "group", "groupCollapsed", "groupEnd", "info", "log", "markTimeline", "profile", "profileEnd", "markTimeline", "table", "time", "timeEnd", "timeStamp", "trace", "warn"];
+        var methods = ['assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error', 'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log', 'markTimeline', 'profile', 'profileEnd', 'markTimeline', 'table', 'time', 'timeEnd', 'timeStamp', 'trace', 'warn'];
         var length = methods.length;
         var console = window.console = {};
         while (length--) {
@@ -20,19 +20,19 @@ if (!String.prototype.trim) {
 
 // Load Css
 function loadCss(url) {
-    var link = document.createElement("link");
-    link.type = "text/css";
-    link.rel = "stylesheet";
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
     link.href = url;
-    document.getElementsByTagName("head")[0].appendChild(link);
+    document.getElementsByTagName('head')[0].appendChild(link);
 }
 
 // Load Script
 function loadScript(url) {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
     script.src = url;
-    document.getElementsByTagName("head")[0].appendChild(script);
+    document.getElementsByTagName('head')[0].appendChild(script);
 }
 
 // Find object
@@ -58,8 +58,8 @@ function getObjects(obj, key, val, only) {
 function styleSupport(prop) {
     var vendorProp, supportedProp,
         capProp = prop.charAt(0).toUpperCase() + prop.slice(1),
-        prefixes = ["Moz", "Webkit", "O", "ms"],
-        div = document.createElement("div");
+        prefixes = ['Moz', 'Webkit', 'O', 'ms'],
+        div = document.createElement('div');
 
     if (prop in div.style) {
         supportedProp = prop;

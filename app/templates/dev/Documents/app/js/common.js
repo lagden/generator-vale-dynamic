@@ -1,5 +1,5 @@
 requirejs.config({
     paths: {
-        app: "../app"
+        app: '../app'
     }
 });

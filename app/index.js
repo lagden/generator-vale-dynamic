@@ -27,19 +27,19 @@ ValeDynamicGenerator.prototype.askFor = function askFor() {
     var prompts = [{
         name: 'projectName',
         message: 'Qual o nome do projeto?',
-        default: "Projeto"
+        default: 'Projeto'
     }, {
         name: 'projectDescription',
         message: 'Qual a descrição do projeto?',
-        default: "Página dinâmica - Vale.com"
+        default: 'Página dinâmica - Vale.com'
     }, {
         name: 'projectAuthor',
         message: 'Qual o nome do desenvolvedor do projeto?',
-        default: "Thiago Lagden"
+        default: 'Thiago Lagden'
     }, {
         name: 'projectPath',
         message: 'Qual é o caminho no Sharepoint onde ficará o projeto?',
-        default: "/SiteCollectionDocuments"
+        default: '/SiteCollectionDocuments'
     }, {
         name: 'projectLocalServerPort',
         message: 'Qual é será a porta utilizada pelo servidor local?',
@@ -56,7 +56,7 @@ ValeDynamicGenerator.prototype.askFor = function askFor() {
         name: 'jqueryVersion',
         type: 'list',
         message: 'Escolha a versão que deseja usar jQuery?',
-        choices: ["1.7.2", "1.8.2", "1.10.2"]
+        choices: ['1.7.2', '1.8.2', '1.10.2']
     }, {
         name: 'useHandlebars',
         type: 'confirm',
@@ -129,8 +129,8 @@ ValeDynamicGenerator.prototype.writePackage = function writePackage() {
     _package.name = this.projectName;
     _package.description = this.projectDescription;
     _package.author.name = this.projectAuthor;
-    if (this.useJquery) _package.volo.dependencies["jquery"] = "http://ajax.googleapis.com/ajax/libs/jquery/" + this.jqueryVersion + "/jquery.js";
-    if (this.useHandlebars) _package.volo.dependencies["handlebars"] = "http://rawgithub.com/wycats/handlebars.js/1.0.0/dist/handlebars.js";
-    if (this.addHtml5shiv) _package.volo.dependencies["html5shiv"] = "http://rawgithub.com/aFarkas/html5shiv/master/dist/html5shiv.js";
+    if (this.useJquery) _package.volo.dependencies['jquery'] = 'http://ajax.googleapis.com/ajax/libs/jquery/' + this.jqueryVersion + '/jquery.js';
+    if (this.useHandlebars) _package.volo.dependencies['handlebars'] = 'http://rawgithub.com/wycats/handlebars.js/1.0.0/dist/handlebars.js';
+    if (this.addHtml5shiv) _package.volo.dependencies['html5shiv'] = 'http://rawgithub.com/aFarkas/html5shiv/master/dist/html5shiv.js';
     this.write('package.json', JSON.stringify(_package));
 };
