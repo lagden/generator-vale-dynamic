@@ -1,13 +1,13 @@
 #exemplo
     h1 Yo Vale is awesome
     p.
-        Now, you can make 
+        Now, you can make
         amazing things!!
 
 script(src='#{path}js/helpers.js').
 script(src='#{path}js/lib/require.js').
 script.
-    window.pathFinal = "#{path}";
+    window.pathFinal = '#{path}';
 
 if useJquery
     script.
@@ -19,10 +19,10 @@ script.
         waitSeconds: 30,
         config:{
             i18n: {
-                locale: window.parent.document.documentElement.lang || "pt-br"
+                locale: window.parent.document.documentElement.lang || 'pt-br'
             }
         },
-        baseUrl: "#{path}js/lib"
+        baseUrl: '#{path}js/lib'
     });
     require(['../common'], function (common) {
         require(['app/main']);
