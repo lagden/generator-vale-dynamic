@@ -25,16 +25,16 @@ Instalando as dependências e efetuando as configurações para o **desenvolvime
     npm install -g volo
     npm install -g bower
     npm install -g grunt-cli
-    
+
     git clone git@git.tribointeractive.com.br:vale-com/projeto.git projeto
     cd projeto
     npm install -d
-    
+
 ## Desenvolvimento
 
 Para trabalhar no projeto, você deverá fazer o seguinte:
 
-- Execute o `grunt server`.  
+- Execute o `grunt server`.
 - Adicione o diretório do projeto no seu editor e comece a trabalhar.
 
 Segue abaixo a árvore com os diretórios **importantes** para o desenvolvimento:
@@ -59,7 +59,7 @@ Segue abaixo a árvore com os diretórios **importantes** para o desenvolvimento
            |---vendor
            |-template
            |-tools
-    
+
 ## Build
 
 Execute o comando `grunt build` para gerar os arquivos de publicação no diretório `build`.
@@ -75,7 +75,7 @@ Acesse o diretório `build/Documents` e copie o diretório `app` para dentro do 
 No `Editor de conteúdo` adicione via código fonte o seguinte:
 
     <iframe scrolling="no" frameborder="0" src="/gbl/global/pagina/Documents/app/index.html" width="100%"></iframe>​​
-    
+
 ### Via editor de conteúdo
 
 Adicione um nova `Web Part` -> `Mídia e Conteúdo` -> `Editor de conteúdo`.
@@ -94,7 +94,7 @@ No arquivo `Gruntfile.js`, na linha 9, tem a variável `pathFinal` que será o n
 
 **Por exemplo:**
 
-Definimos que o `pathFinal` será `/gbl/global/pagina/Documents/app-1/`.  
+Definimos que o `pathFinal` será `/gbl/global/pagina/Documents/app-1/`.
 Então execute o `grunt build`, faça o upload normalmente, como descrito no item [Publicação](#publicacao), e renomeie o diretório para `app-1`.
 
 ## Contribuição
