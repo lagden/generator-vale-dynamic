@@ -1,7 +1,13 @@
 define(function(require) {
 
-    var devDebug = (typeof window.devDebug  !== 'undefined') ? window.devDebug : false;
-    var prefixo = (devDebug) ? 'http://www.vale.com' : '';
+    "use strict";
+
+    // Vars
+    var devDebug = "undefined" !== typeof window.devDebug ? window.devDebug : !1,
+        pathFinal = "undefined" !== typeof window.pathFinal ? window.pathFinal : "/",
+        prefixo = devDebug ? "http://www.vale.com/" : "/";
+
+    // Exemplo
     var dados = require('i18n!./nls/dados');
 
     console.log(dados);

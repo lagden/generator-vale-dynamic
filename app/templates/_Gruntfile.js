@@ -33,6 +33,7 @@ module.exports = function(grunt) {
                     src: [pathDevJs + '/**/*.js']
                 },
                 options: {
+                    jshintrc: ".jshintrc",
                     ignores: [pathDevJs + '/lib/**/*']
                 }
             }
@@ -152,7 +153,7 @@ module.exports = function(grunt) {
             );
         }
     );
-    grunt.registerTask('default', ['clean', 'compass', 'jade', 'jshint:app']);
+    grunt.registerTask('default', ['clean', 'compass', 'jade', 'jshint']);
     grunt.registerTask('server', ['default', 'connect', 'open', 'watch']);
     grunt.registerTask('build', ['default', 'requirejs']);
 };

@@ -3,6 +3,7 @@
     "removeCombined": true,
     "generateSourceMaps": false,
     "preserveLicenseComments": false,
+    "optimizeCss": "none",
     "mainConfigFile": "../dev/Documents/app/js/common.js",
     "appDir": "../dev",
     "dir": "../build",
@@ -11,7 +12,8 @@
         "name": "../common",
         "include": ["text", "i18n"]
     }, {
-        "name": "app/main",
+        "name": "../main",
+        "include": ["app/main"],
         "exclude": ["../common"]
     }]
 }

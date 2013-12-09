@@ -4,10 +4,8 @@
         Now, you can make
         amazing things!!
 
-script(src='#{path}js/helpers.js').
-script(src='#{path}js/lib/require.js').
-script.
-    window.pathFinal = '#{path}';
+script(src='#{path}js/helpers.js')
+script(src='#{path}js/lib/require.js')
 
 if useJquery
     script.
@@ -15,6 +13,21 @@ if useJquery
 
 script.
     var devDebug = #{debug};
+    window.pathFinal = "#{path}";
+
+if debug
+    script.
+        //- Somente para dev | 127.0.0.1
+        var hostname = window.location.hostname;
+        var yourIP = "192.168.1.215";
+        if (hostname == "localhost" || hostname == yourIP) {
+            //- Coloque os scripts dev dependencies
+            //- Exemplo:
+            //- window.loadScript('//' + hostname + '/github/fancyBox/source/jquery.fancybox.js');
+            //- window.loadCss('//' + hostname + '/github/fancyBox/source/jquery.fancybox.css');
+        }
+
+script.
     requirejs.config({
         waitSeconds: 30,
         config:{
@@ -22,8 +35,6 @@ script.
                 locale: window.parent.document.documentElement.lang || 'pt-br'
             }
         },
-        baseUrl: '#{path}js/lib'
+        baseUrl: "#{path}js"
     });
-    require(['../common'], function (common) {
-        require(['app/main']);
-    });
+    require(['#{path}js/main.js']);

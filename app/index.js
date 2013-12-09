@@ -5,7 +5,7 @@ var yeoman = require('yeoman-generator');
 
 var ValeDynamicGenerator = module.exports = function ValeDynamicGenerator(args, options, config) {
     yeoman.generators.Base.apply(this, arguments);
-    var cowsay = this.readFileAsString(path.join(__dirname, '../COW.txt'));
+    var cowsay = this.readFileAsString(path.join(__dirname, '../COWSAY'));
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
     this.on('end', function() {
         var installProjectDependencies = !this.installProjectDependencies;

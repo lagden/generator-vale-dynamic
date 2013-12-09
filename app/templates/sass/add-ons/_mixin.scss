@@ -3,7 +3,7 @@
     $ie:null !default;
     $others:null !default;
     @each $n in $sizes {
-        @if $n == "auto" {
+        @if (type-of($n) == string) or (type-of($n) == color) {
             $ie: join($ie, $n);
             $others: join($others, $n);
         } @else {
