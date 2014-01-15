@@ -9,13 +9,10 @@
     position: relative;
 }
 
-.unstyled-link{
-    text-decoration: inherit !important;
-    cursor: inherit !important;
-    &:active,
-    &:focus{
-        outline:none !important;
-    }
+.link{}
+
+.link--unstyled{
+    @include unstyled-link;
 }
 
 .rule{

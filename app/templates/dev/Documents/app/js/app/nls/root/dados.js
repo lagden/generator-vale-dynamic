@@ -1,3 +1,3 @@
 define({
-    "key": "example"
+    'key': 'example'
 });

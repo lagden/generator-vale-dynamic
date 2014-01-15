@@ -1,5 +1,5 @@
 // For image replacement
-.image-replacement{
+.imagereplacement{
     border: 0;
     text-shadow: none;
     color: transparent;
@@ -81,8 +81,8 @@
 }
 
 // Font size
-// Usage: <p class="fs-10">Yeahh</p>;
-$fontSizes: 12, 14, 16, 18, 26, 33;
+// Usage: <p class="fs-32">Yeahh</p>;
+$fontSizes: 16 32;
 @each $c in $fontSizes {
     .fs-#{$c}{
         @include attr-size('font-size', $c, !important);

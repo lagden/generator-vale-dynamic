@@ -20,11 +20,17 @@ Esta página depende das tecnologias abaixo para seu **desenvolvimento**:
 
 Instalando as dependências e efetuando as configurações para o **desenvolvimento**.
 
+### Parte 1
+
+Se já tem tudo instalado vá para a **parte 2**.
+
     gem install compass
     npm install -g requirejs
     npm install -g volo
     npm install -g bower
     npm install -g grunt-cli
+    
+### Parte 2
 
     git clone git@git.tribointeractive.com.br:vale-com/projeto.git projeto
     cd projeto
@@ -43,8 +49,6 @@ Segue abaixo a árvore com os diretórios **importantes** para o desenvolvimento
            |-dev
            |---Documents
            |-----app
-           |-------css
-           |-------fonts
            |-------js
            |---------app
            |-----------nls
@@ -52,17 +56,16 @@ Segue abaixo a árvore com os diretórios **importantes** para o desenvolvimento
            |-------------pt-br
            |-------------root
            |-----------templates
-           |---------lib
            |-sass
            |---add-ons
            |---app
            |---vendor
-           |-template
-           |-tools
+           |-jade
+           |---templates
 
 ## Build
 
-Execute o comando `grunt build` para gerar os arquivos de publicação no diretório `build`.
+Execute o comando `grunt build` para gerar os arquivos de deploy no diretório `build`.
 
 ## <a name="publicacao"></a>Publicação
 
@@ -90,7 +93,7 @@ Dentro do box(`Editar Web Part`) ache item `Link de Conteúdo` coloque:
 
 Desenvolvi um `workaround` para evitar o **cache** quando for publicar uma atualização do projeto.
 
-No arquivo `Gruntfile.js`, na linha 9, tem a variável `pathFinal` que será o nosso controle de versão.
+No arquivo `Gruntfile.js`, na linha 7, tem a variável `pathFinal` que será o nosso controle de versão.
 
 **Por exemplo:**
 
@@ -99,4 +102,4 @@ Então execute o `grunt build`, faça o upload normalmente, como descrito no ite
 
 ## Contribuição
 
-- [Thiago Lagden](https://twitter.com/thiagolagden)
+- [Thiago Lagden](https://github.com/lagden)

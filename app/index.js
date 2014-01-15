@@ -129,8 +129,8 @@ ValeDynamicGenerator.prototype.writePackage = function writePackage() {
     _package.name = this.projectName;
     _package.description = this.projectDescription;
     _package.author.name = this.projectAuthor;
-    if (this.useJquery) _package.volo.dependencies['jquery'] = 'http://ajax.googleapis.com/ajax/libs/jquery/' + this.jqueryVersion + '/jquery.js';
-    if (this.useHandlebars) _package.volo.dependencies['handlebars'] = 'http://rawgithub.com/wycats/handlebars.js/1.0.0/dist/handlebars.js';
-    if (this.addHtml5shiv) _package.volo.dependencies['html5shiv'] = 'http://rawgithub.com/aFarkas/html5shiv/master/dist/html5shiv.js';
+    if (this.useJquery) _package.volo.dependencies['lib.jquery'] = 'http://ajax.googleapis.com/ajax/libs/jquery/' + this.jqueryVersion + '/jquery.js';
+    if (this.useHandlebars) _package.volo.dependencies['lib.handlebars'] = 'http://rawgithub.com/wycats/handlebars.js/1.0.0/dist/handlebars.js';
+    if (this.addHtml5shiv) _package.volo.dependencies['lib.html5shiv'] = 'http://rawgithub.com/aFarkas/html5shiv/master/dist/html5shiv.js';
     this.write('package.json', JSON.stringify(_package));
 };

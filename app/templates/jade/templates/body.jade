@@ -1,15 +1,14 @@
 #exemplo
-    h1 Yo Vale is awesome
+    h1 Yo Vale
     p.
         Now, you can make
-        amazing things!!
+        amazing things !!
 
 script(src='#{path}js/helpers.js')
-script(src='#{path}js/lib/require.js')
 
 if useJquery
     script.
-        window.jQuery || document.write('<script src="#{path}js/lib/jquery.js"><\/script>');
+        window.jQuery || document.write('<script src="#{path}js/lib.jquery.js"><\/script>');
 
 script.
     var devDebug = #{debug};
@@ -17,24 +16,11 @@ script.
 
 if debug
     script.
-        //- Somente para dev | 127.0.0.1
-        var hostname = window.location.hostname;
-        var yourIP = "192.168.1.215";
-        if (hostname == "localhost" || hostname == yourIP) {
-            //- Coloque os scripts dev dependencies
-            //- Exemplo:
-            //- window.loadScript('//' + hostname + '/github/fancyBox/source/jquery.fancybox.js');
-            //- window.loadCss('//' + hostname + '/github/fancyBox/source/jquery.fancybox.css');
-        }
+        //- Somente para dev
+        //- Coloque os scripts dev dependencies
+        //- Exemplo:
+        //- Fancybox
+        //- loadCss('//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.1/jquery.fancybox.min.css');
+        //- loadScript('//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.1/jquery.fancybox.pack.min.js');
 
-script.
-    requirejs.config({
-        waitSeconds: 30,
-        config:{
-            i18n: {
-                locale: window.parent.document.documentElement.lang || 'pt-br'
-            }
-        },
-        baseUrl: "#{path}js"
-    });
-    require(['#{path}js/main.js']);
+script(src='#{path}js/lib.require.js', data-main="#{path}js/main")

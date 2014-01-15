@@ -1,40 +1,37 @@
 'use strict';
 
-var os = require('os');
-var exec = require('child_process').exec;
-var mountFolder = function(connect, dir) {
-    return connect.static(require('path').resolve(dir));
-};
-var appUseJquery = <%= useJquery %>;
-var appAddHtml5shiv = <%= addHtml5shiv %>;
-var pathFinal = '<%= projectPath %>/<%= _.slugify(projectName) %>-1/';
+var os = require('os'),
+    exec = require('child_process').exec,
+    appUseJquery = <%= useJquery %>,
+    appAddHtml5shiv = <%= addHtml5shiv %>,
+    pathFinal = '<%= projectPath %>/<%= _.slugify(projectName) %>-1/';
 
 module.exports = function(grunt) {
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-    var buildConfigMain = grunt.file.readJSON('tools/build.js');
-
-    var dev = 'dev',
-        build = 'build',
-        pathDevDoc = dev + '/Documents/app',
-        pathDevJs = pathDevDoc + '/js',
-        pathDevCss = pathDevDoc + '/css';
+    
+    var buildConfigMain = grunt.file.readJSON('tools/build.js'),
+        dev = 'dev/',
+        build = 'build/',
+        pathBuildDoc = build + 'Documents/app/',
+        pathDevDoc = dev + 'Documents/app/',
+        pathDevJs = pathDevDoc + 'js/';
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         clean: {
             app: {
-                src: [pathDevCss, build, pathDevDoc + '/*.html', pathDevDoc + '/*.txt']
+                src: [build, pathDevDoc + '*.html', pathDevDoc + '*.txt']
             }
         },
         jshint: {
             app: {
                 files: {
-                    src: [pathDevJs + '/**/*.js']
+                    src: [pathDevJs + '**/*.js']
                 },
                 options: {
-                    jshintrc: ".jshintrc",
-                    ignores: [pathDevJs + '/lib/**/*']
+                    jshintrc: '.jshintrc',
+                    ignores: [pathDevJs + 'lib.*']
                 }
             }
         },
@@ -48,7 +45,6 @@ module.exports = function(grunt) {
         jade: {
             iframe: {
                 options: {
-                    compileDebug: true,
                     pretty: true,
                     data: {
                         path: '',
@@ -58,7 +54,7 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
-                    'dev/Documents/app/index.html': ['jade/templates/index.jade']
+                    'dev/Documents/app/iframe.html': ['jade/templates/index.jade']
                 }
             },
             txt: {
@@ -94,20 +90,23 @@ module.exports = function(grunt) {
         watch: {
             sass: {
                 files: ['sass/**/*.scss'],
-                tasks: ['compass'],
+                tasks: ['compass']
+            },
+            css: {
+                files: [pathDevDoc + '**/*.css'],
                 options: {
                     livereload: true
                 }
             },
             scripts: {
-                files: [pathDevDoc + '/js/**/*.js'],
-                tasks: ['jshint:dev'],
+                files: [pathDevDoc + 'js/**/*.js'],
+                tasks: ['jshint:app'],
                 options: {
                     interrupt: true
                 }
             },
             jade: {
-                files: ['jade/templates/**/*.jade'],
+                files: ['jade/templates/**/*.jade', 'db/**/*.json'],
                 tasks: ['jade:server'],
                 options: {
                     interrupt: true
@@ -118,19 +117,24 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     port: <%= projectLocalServerPort %>,
-                    hostname: '0.0.0.0',
-                    middleware: function(connect) {
-                        return [
-                            require('connect-livereload')(),
-                            mountFolder(connect, pathDevDoc)
-                        ];
-                    }
+                    hostname: '*',
+                    keepalive: false,
+                    livereload: true,
+                    debug: true,
+                    base: pathDevDoc,
+                    open: 'http://localhost:<%= connect.dev.options.port %>/server.html'
                 }
-            }
-        },
-        open: {
-            server: {
-                url: 'http://localhost:<%= projectLocalServerPort %>/server.html'
+            },
+            build: {
+                options: {
+                    port: <%= projectLocalServerPort %>,
+                    hostname: '*',
+                    keepalive: true,
+                    livereload: false,
+                    debug: false,
+                    base: pathBuildDoc,
+                    open: 'http://localhost:<%= connect.build.options.port %>/server.html'
+                }
             }
         }
     });
@@ -139,8 +143,8 @@ module.exports = function(grunt) {
         'requirejs',
         'Run the r.js build script',
         function() {
-            var done = this.async();
-            var command = (os.platform() == 'win32') ? 'r.js.cmd' : 'r.js';
+            var done = this.async(),
+                command = (os.platform() == 'win32') ? 'r.js.cmd' : 'r.js';
             exec(command + ' -o ./tools/build.js',
                 function(err, stdout, stderr) {
                     if (err) {
@@ -153,7 +157,7 @@ module.exports = function(grunt) {
             );
         }
     );
-    grunt.registerTask('default', ['clean', 'compass', 'jade', 'jshint']);
-    grunt.registerTask('server', ['default', 'connect', 'open', 'watch']);
+    grunt.registerTask('default', ['clean:app', 'compass:app', 'jade', 'jshint:app']);
+    grunt.registerTask('server', ['default', 'connect:dev', 'watch']);
     grunt.registerTask('build', ['default', 'requirejs']);
 };

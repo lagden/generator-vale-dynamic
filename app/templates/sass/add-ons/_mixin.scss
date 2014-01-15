@@ -25,7 +25,7 @@
 @mixin inline-block($important:null) {
     display: join(inline-block, $important);
     *display: join(inline, $important);
-    *zoom:1;
+    *zoom: 1;
 }
 
 // IE7 inline-block Important
@@ -54,7 +54,7 @@
 }
 
 // Placeholder text
-@mixin placeholder($color: $placeholderText) {
+@mixin placeholder($color:#333) {
     &:-moz-placeholder {
         color: $color;
     }

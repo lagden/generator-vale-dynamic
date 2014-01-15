@@ -7,13 +7,13 @@
     "mainConfigFile": "../dev/Documents/app/js/common.js",
     "appDir": "../dev",
     "dir": "../build",
-    "baseUrl": "Documents/app/js/lib",
+    "baseUrl": "Documents/app/js",
     "modules": [{
-        "name": "../common",
-        "include": ["text", "i18n"]
+        "name": "common",
+        "include": ["lib.text", "lib.i18n"]
     }, {
-        "name": "../main",
+        "name": "main",
         "include": ["app/main"],
-        "exclude": ["../common"]
+        "exclude": ["common"]
     }]
 }

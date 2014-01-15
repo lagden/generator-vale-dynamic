@@ -8,25 +8,23 @@
     "license": "BSD",
     "devDependencies": {
         "matchdep": "~0.1.x",
-        "connect-livereload": "~0.3.x",
         "grunt": "~0.4.x",
-        "grunt-open": "~0.2.x",
         "grunt-contrib-compass": "~0.5.x",
         "grunt-contrib-clean": "~0.5.x",
         "grunt-contrib-watch": "~0.5.x",
         "grunt-contrib-jshint": "~0.6.x",
         "grunt-contrib-jade": "~0.8.x",
-        "grunt-contrib-connect": "~0.3.x"
+        "grunt-contrib-connect": "~0.6.x"
     },
     "scripts": {
         "install": "volo add -skipexists"
     },
     "volo": {
-        "baseUrl": "dev/Documents/app/js/lib",
+        "baseUrl": "dev/Documents/app/js",
         "dependencies": {
-            "require": "github:jrburke/requirejs/2.1.9",
-            "text": "github:requirejs/text/2.0.10",
-            "i18n": "https://rawgithub.com/requirejs/i18n/latest/i18n.js"
+            "lib.require": "github:jrburke/requirejs/2.1.9",
+            "lib.text": "github:requirejs/text/2.0.10",
+            "lib.i18n": "https://rawgithub.com/requirejs/i18n/latest/i18n.js"
         }
     }
 }

@@ -1,4 +1,4 @@
 require(['./common'], function (common) {
-    "use strict";
+    'use strict';
     require(['app/main']);
 });
