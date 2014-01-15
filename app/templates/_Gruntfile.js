@@ -122,7 +122,7 @@ module.exports = function(grunt) {
                     livereload: true,
                     debug: true,
                     base: pathDevDoc,
-                    open: 'http://localhost:<%= connect.dev.options.port %>/server.html'
+                    open: 'http://localhost:<%= projectLocalServerPort %>/server.html'
                 }
             },
             build: {
@@ -133,7 +133,7 @@ module.exports = function(grunt) {
                     livereload: false,
                     debug: false,
                     base: pathBuildDoc,
-                    open: 'http://localhost:<%= connect.build.options.port %>/server.html'
+                    open: 'http://localhost:<%= projectLocalServerPort %>/server.html'
                 }
             }
         }

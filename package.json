@@ -1,6 +1,6 @@
 {
     "name": "generator-vale-dynamic",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A generator for Yeoman - Vale.com",
     "keywords": [
         "yeoman-generator",
