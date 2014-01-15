@@ -9,11 +9,14 @@
     "dir": "../build",
     "baseUrl": "Documents/app/js",
     "modules": [{
+        "name": "config"
+    }, {
         "name": "common",
-        "include": ["lib.text", "lib.i18n"]
+        "include": ["lib.text", "lib.i18n"],
+        "exclude": ["config"]
     }, {
         "name": "main",
-        "include": ["app/main"],
-        "exclude": ["common"]
+        "include": ["app/main", "app/nls/dados", "app/nls/root/dados", "app/nls/es-es/dados", "app/nls/pt-br/dados"],
+        "exclude": ["config", "common"]
     }]
 }
