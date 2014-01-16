@@ -55,7 +55,6 @@ Segue abaixo a árvore com os diretórios **importantes** para o desenvolvimento
            |-------------es-es
            |-------------pt-br
            |-------------root
-           |-----------templates
            |-sass
            |---add-ons
            |---app

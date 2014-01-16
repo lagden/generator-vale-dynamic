@@ -4,6 +4,7 @@ var os = require('os'),
     exec = require('child_process').exec,
     appUseJquery = <%= useJquery %>,
     appAddHtml5shiv = <%= addHtml5shiv %>,
+    serverPort = <%= projectLocalServerPort %>,
     pathFinal = '<%= projectPath %>/<%= _.slugify(projectName) %>-1/';
 
 module.exports = function(grunt) {
@@ -43,49 +44,13 @@ module.exports = function(grunt) {
             }
         },
         jade: {
-            iframe: {
-                options: {
-                    pretty: true,
-                    data: {
-                        path: '',
-                        useJquery: appUseJquery,
-                        addHtml5shiv: appAddHtml5shiv,
-                        debug: false
-                    }
-                },
-                files: {
-                    'dev/Documents/app/iframe.html': ['jade/templates/index.jade']
-                }
-            },
-            txt: {
-                options: {
-                    pretty: true,
-                    data: {
-                        path: pathFinal,
-                        useJquery: appUseJquery,
-                        addHtml5shiv: appAddHtml5shiv,
-                        debug: false
-                    }
-                },
-                files: {
-                    'dev/Documents/app/app.txt': ['jade/templates/body.jade']
-                }
-            },
-            server: {
-                options: {
-                    compileDebug: true,
-                    pretty: true,
-                    data: {
-                        path: '/',
-                        useJquery: appUseJquery,
-                        addHtml5shiv: appAddHtml5shiv,
-                        debug: true
-                    }
-                },
-                files: {
-                    'dev/Documents/app/server.html': ['jade/templates/index.jade']
-                }
-            }
+            iframe: buildJade('iframe', '', appUseJquery, appAddHtml5shiv, false, true),
+            txt: buildJade('txt', pathFinal, appUseJquery, appAddHtml5shiv, false, false),
+            server: buildJade('server', '/', appUseJquery, appAddHtml5shiv, true, true)
+        },
+        connect: {
+            dev: buildConnect(serverPort, '*', false, true, true, pathDevDoc),
+            build: buildConnect(serverPort, '*', true, false, false, pathBuildDoc)
         },
         watch: {
             sass: {
@@ -110,30 +75,6 @@ module.exports = function(grunt) {
                 tasks: ['jade:server'],
                 options: {
                     interrupt: true
-                }
-            }
-        },
-        connect: {
-            dev: {
-                options: {
-                    port: <%= projectLocalServerPort %>,
-                    hostname: '*',
-                    keepalive: false,
-                    livereload: true,
-                    debug: true,
-                    base: pathDevDoc,
-                    open: 'http://localhost:<%= projectLocalServerPort %>/server.html'
-                }
-            },
-            build: {
-                options: {
-                    port: <%= projectLocalServerPort %>,
-                    hostname: '*',
-                    keepalive: true,
-                    livereload: false,
-                    debug: false,
-                    base: pathBuildDoc,
-                    open: 'http://localhost:<%= projectLocalServerPort %>/server.html'
                 }
             }
         }
@@ -161,3 +102,39 @@ module.exports = function(grunt) {
     grunt.registerTask('server', ['default', 'connect:dev', 'watch']);
     grunt.registerTask('build', ['default', 'requirejs']);
 };
+
+function buildJade(el, path, appUseJquery, appAddHtml5shiv, debug, isHtml) {
+    var o = {
+        'options': {
+            'pretty': true,
+            'data': {
+                'path': path || '/',
+                'useJquery': appUseJquery,
+                'addHtml5shiv': appAddHtml5shiv,
+                'debug': debug
+            }
+        },
+        'files': {}
+    };
+    if (isHtml) {
+        o.files['dev/Documents/app/' + el + '.html'] = ['jade/templates/index.jade'];
+    } else {
+        o.files['dev/Documents/app/' + el + '.txt'] = ['jade/templates/body.jade'];
+    }
+    return o;
+}
+
+function buildConnect(port, hostname, keepalive, livereload, debug, base, open) {
+    var o = {
+        'options': {
+            'port': port || 9000,
+            'hostname': hostname || '*',
+            'keepalive': keepalive || false,
+            'livereload': livereload || false,
+            'debug': debug || false,
+            'base': base,
+            'open': open || 'http://localhost:' + port + '/server.html'
+        }
+    }
+    return o;
+}
